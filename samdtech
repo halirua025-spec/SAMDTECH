@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SAMDTECH iREPAIR</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root{
+      --brand:#4B0082;
+      --brand-dark:#3b0070;
+      --bg: linear-gradient(to right, violet, #dda0dd);
+      --card:#ffffff;
+      --text:#333;
+      --muted:#666;
+      --whatsapp:#25d366;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text)}
+    a{color:inherit}
+
+     /* Header */
+    header{
+      background:#fff;
+      padding:16px 20px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      box-shadow:0 2px 6px rgba(0,0,0,.12);
+      position:sticky;top:0;z-index:100;
+    }
+    .brand{
+      display:flex;gap:10px;align-items:center;
+    }
+    .brand h1{font-size:1.15rem;color:var(--brand);margin:0}
+    .brand small{display:block;color:var(--muted)}
+    
+    /* Nav */
+    nav{
+      background:var(--brand);
+      color:#fff;
+      position:relative;
+    }
+    .nav-inner{
+      max-width:1100px;margin:0 auto;padding:10px 16px;
+      display:flex;align-items:center;gap:16px;justify-content:space-between;
+    }
+    .links{
+      display:flex;gap:18px;align-items:center;
+    }
+    .links a{
+      color:#fff;text-decoration:none;font-weight:700;opacity:.95
+    }
+    .links a:hover{opacity:1;text-decoration:underline}
+    .menu-toggle{
+      display:none;border:none;background:transparent;color:#fff;
+      font-size:26px;cursor:pointer;line-height:1
+    }
+
+    /* Sections */
+    section{
+      max-width:1100px;margin:16px auto;padding:24px;
+      background:rgba(255,255,255,.95);border-radius:12px;
+      box-shadow:0 3px 8px rgba(0,0,0,.08)
+    }
+    section h2{
+      color:var(--brand);margin-top:0;padding-bottom:6px;border-bottom:2px solid #eee
+    }
+    ul{padding-left:18px}
+
+    /* Shop */
+    .products{
+      display:grid;gap:16px;
+      grid-template-columns:repeat(auto-fit,minmax(210px,1fr))
+    }
+    .card{
+      background:var(--card);border:1px solid #eee;border-radius:12px;
+      padding:14px;text-align:center;display:flex;flex-direction:column;gap:8px
+    }
+    .card img{width:100%;height:160px;object-fit:contain}
+    .title{font-weight:700;color:var(--brand);min-height:40px}
+    .price{font-weight:800;color:green;margin-top:auto}
+    .btn{
+      display:inline-block;border:none;border-radius:10px;padding:10px 14px;
+      background:var(--brand);color:#fff;font-weight:700;cursor:pointer;
+      text-decoration:none;transition:.2s; margin-top:6px
+    }
+    .btn:hover{background:var(--brand-dark);transform:translateY(-1px)}
+
+    /* Form */
+    form label{font-weight:700;margin-top:12px;display:block}
+    input,select,textarea{
+      width:100%;padding:10px;border:1px solid #ccc;border-radius:8px;margin-top:6px
+    }
+    textarea{min-height:110px;resize:vertical}
+    .grid-2{display:grid;gap:12px;grid-template-columns:1fr 1fr}
+    .muted{color:var(--muted);font-size:.9rem}
+    .sig{
+      border:1px dashed var(--brand);padding:10px;border-radius:8px;background:#faf7ff;margin-top:12px
+    }
+
+    /* CTA */
+    .cta{
+      text-align:center;margin:24px 0
+    }
+    .cta a{
+      background:var(--brand);color:#fff;padding:12px 22px;border-radius:10px;
+      font-weight:700;text-decoration:none;display:inline-block
+    }
+    .cta a:hover{background:var(--brand-dark)}
+
+    /* Footer */
+    footer{background:var(--brand);color:#fff;text-align:center;padding:16px;margin-top:24px}
+
+    /* Floating WhatsApp */
+    .whatsapp-float{
+      position:fixed;right:18px;bottom:18px;background:var(--whatsapp);
+      border-radius:50%;width:60px;height:60px;display:flex;align-items:center;justify-content:center;
+      box-shadow:0 6px 16px rgba(0,0,0,.25);z-index:120;transition:.2s
+    }
+    .whatsapp-float:hover{transform:scale(1.06)}
+    .whatsapp-float img{width:36px;height:36px}
+
+    /* Responsive */
+    @media (max-width:900px){
+      .menu-toggle{display:block}
+      .links{display:none;flex-direction:column;align-items:flex-start;padding:10px 0}
+      nav.active .links{display:flex}
+      .grid-2{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="brand">
+      <div style="width:36px;height:36px;background:var(--brand);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800">S</div>
+      <div>
+        <h1>SAMDTECH iREPAIR 💻</h1>
+        <small class="muted">Expert Laptop • Phone • PCB Repairs</small>
+      </div>
+    </div>
+  </header>
+
+  <!-- Nav -->
+  <nav id="nav">
+    <div class="nav-inner">
+      <button class="menu-toggle" aria-label="Toggle menu" onclick="toggleMenu()">☰</button>
+      <div class="links" id="links">
+        <a href="#about" onclick="closeMenu()">About</a>
+        <a href="#services" onclick="closeMenu()">Services</a>
+        <a href="#shop" onclick="closeMenu()">Shop Now</a>
+        <a href="#register" onclick="closeMenu()">Register Device</a>
+        <a href="#contact" onclick="closeMenu()">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- About -->
+  <section id="about">
+    <h2>About Us</h2>
+    <p>
+      At <strong>SAMDTECH iREPAIR</strong>, we've spent 5+ years delivering fast, reliable repairs
+      for laptops, phones, and PCB boards, using quality parts and pro‑grade tools.
+    </p>
+    <p class="muted">Managed by <b>Haliru Abdullah</b> (10+ years experience).</p>
+  </section>
+
+  <!-- Services -->
+  <section id="services">
+    <h2>Our Services</h2>
+    <ul>
+      <li>Laptop: Screen, Battery, Keyboard, Motherboard diagnostics & repair</li>
+      <li>Phone: Screen, Charging port, Battery, Water damage repair</li>
+      <li>PCB & Motherboard: revival, data/boot recovery, component level</li>
+      <li>Solar: Residential & Commercial installs, Inverters, Battery storage</li>
+      <li>Sales: New & Refurb laptops, upgrades, accessories</li>
+    </ul>
+  </section>
+
+  <!-- Shop -->
+  <section id="shop">
+    <h2>Shop Now 🛒</h2>
+    <p class="muted">Images are illustrative; prices are sample and can be edited anytime.</p>
+    <div class="products">
+      <!-- iPhone -->
+      <article class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/IPhone_14_Pro_vector.svg" alt="Apple iPhone 14 Pro" />
+        <div class="title">Apple iPhone 14 Pro</div>
+        <div class="price">₦ 850,000</div>
+        <button class="btn" onclick="orderProduct('Apple iPhone 14 Pro','850000')">Order on WhatsApp</button>
+      </article>
+      <!-- HP -->
+      <article class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/8c/HP_EliteBook_x360_830_G6.jpg" alt="HP EliteBook" />
+        <div class="title">HP EliteBook (Refurb)</div>
+        <div class="price">₦ 450,000</div>
+        <button class="btn" onclick="orderProduct('HP EliteBook (Refurb)','450000')">Order on WhatsApp</button>
+      </article>
+      <!-- Dell -->
+      <article class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/Dell_XPS_13_7390_2-in-1_Laptop.png" alt="Dell XPS 13" />
+        <div class="title">Dell XPS 13</div>
+        <div class="price">₦ 600,000</div>
+        <button class="btn" onclick="orderProduct('Dell XPS 13','600000')">Order on WhatsApp</button>
+      </article>
+      <!-- Tecno -->
+      <article class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/73/Tecno_Spark_5_Air.jpg" alt="Tecno phone" />
+        <div class="title">Tecno Spark Series</div>
+        <div class="price">₦ 95,000</div>
+        <button class="btn" onclick="orderProduct('Tecno Spark Series','95000')">Order on WhatsApp</button>
+      </article>
+      <!-- itel -->
+      <article class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/ea/Itel_A23_Pro.jpg" alt="itel smartphone" />
+        <div class="title">itel A‑Series</div>
+        <div class="price">₦ 75,000</div>
+        <button class="btn" onclick="orderProduct('itel A‑Series','75000')">Order on WhatsApp</button>
+      </article>
+      <!-- Phone Charger -->
+      <article class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/USB-C_charger_and_cable.jpg" alt="Fast charger" />
+        <div class="title">Fast Phone Charger</div>
+        <div class="price">₦ 8,000</div>
+        <button class="btn" onclick="orderProduct('Fast Phone Charger','8000')">Order on WhatsApp</button>
+      </article>
+      <!-- Laptop Charger -->
+      <article class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Laptop_power_adapter.jpg" alt="Laptop charger" />
+        <div class="title">Laptop Charger</div>
+        <div class="price">₦ 18,000</div>
+        <button class="btn" onclick="orderProduct('Laptop Charger','18000')">Order on WhatsApp</button>
+      </article>
+      <!-- Headset -->
+      <article class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/35/Bluetooth_headset.jpg" alt="Wireless headset" />
+        <div class="title">Wireless Headset</div>
+        <div class="price">₦ 15,000</div>
+        <button class="btn" onclick="orderProduct('Wireless Headset','15000')">Order on WhatsApp</button>
+      </article>
+    </div>
+  </section>
+
+  <!-- Register -->
+  <section id="register">
+    <h2>Register Device for Repair 🛠️</h2>
+    <form id="repairForm" onsubmit="return submitRepair(event)">
+      <div class="grid-2">
+        <div>
+          <label for="custName">Customer Name (Signature)</label>
+          <input id="custName" name="custName" type="text" placeholder="Type your full name" required />
+        </div>
+        <div>
+          <label for="phone">Phone Number</label>
+          <input id="phone" name="phone" type="tel" placeholder="e.g. 08012345678" required />
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div>
+          <label for="deviceType">Device Type</label>
+          <select id="deviceType" name="deviceType" required>
+            <option value="">-- Select --</option>
+            <option value="Phone">Phone</option>
+            <option value="Laptop">Laptop</option>
+          </select>
+        </div>
+        <div>
+          <label for="model">Device Name / Model</label>
+          <input id="model" name="model" type="text" placeholder="e.g. iPhone 11, HP EliteBook" required />
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div>
+          <label for="serial">Serial / IMEI (optional)</label>
+          <input id="serial" name="serial" type="text" placeholder="IMEI or Serial Number" />
+        </div>
+        <div>
+          <label for="pin">Device Password/PIN (optional)</label>
+          <input id="pin" name="pin" type="text" placeholder="For testing (optional)" />
+        </div>
+      </div>
+
+      <label for="issue">Issue Description</label>
+      <textarea id="issue" name="issue" placeholder="Describe the problem..." required></textarea>
+
+      <label for="accessories">Accessories Provided (optional)</label>
+      <input id="accessories" name="accessories" type="text" placeholder="e.g. Charger, Case, SIM tray" />
+
+      <label for="priority">Urgency</label>
+      <select id="priority" name="priority">
+        <option>Normal</option>
+        <option>Urgent</option>
+      </select>
+
+      <div class="sig">
+        <p class="muted" style="margin:0 0 6px 0">By submitting, I confirm the above details are correct.</p>
+        <p style="margin:0"><b>Company Signature:</b> SAMDTECH ✅</p>
+      </div>
+
+      <button class="btn" type="submit">Submit to WhatsApp</button>
+    </form>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>For quick assistance, chat with us on WhatsApp or call.</p>
+    <div class="cta">
+      <a id="whatsMain" href="#" onclick="openWhatsApp('Hello SAMDTECH, I need assistance.'); return false;">📞 Chat on WhatsApp</a>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 SAMDTECH iREPAIR -- All Rights Reserved
+  </footer>
+
+  <!-- Floating WhatsApp -->
+  <a class="whatsapp-float" href="#" onclick="openWhatsApp('Hello SAMDTECH!'); return false;" title="Chat with us on WhatsApp" aria-label="Chat on WhatsApp">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
+  </a>
+
+  <script>
+    /* ====== CONFIG: Set your WhatsApp number here (digits only) ====== */
+    const WHATSAPP_NUMBER = "2349037066186"; // ← replace with your number
+
+    /* ====== Hamburger ====== */
+    function toggleMenu(){ document.getElementById('nav').classList.toggle('active'); }
+    function closeMenu(){ document.getElementById('nav').classList.remove('active'); }
+
+    /* Close menu on resize to desktop */
+    window.addEventListener('resize', () => { if (window.innerWidth > 900) closeMenu(); });
+
+    /* ====== WhatsApp Helpers ====== */
+    function openWhatsApp(message){
+      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+      window.open(url, '_blank');
+    }
+
+    function orderProduct(name, price){
+      const msg = `Hello SAMDTECH, I want to place an order:\n\nProduct: ${name}\nPrice: ₦ ${Number(price).toLocaleString()}\n\nPlease confirm availability.`;
+      openWhatsApp(msg);
+    }
+
+    /* ====== Repair Form Submit → WhatsApp ====== */
+    function submitRepair(e){
+      e.preventDefault();
+      const f = e.target;
+      const data = {
+        custName: f.custName.value.trim(),
+        phone: f.phone.value.trim(),
+        deviceType: f.deviceType.value,
+        model: f.model.value.trim(),
+        serial: f.serial.value.trim(),
+        pin: f.pin.value.trim(),
+        issue: f.issue.value.trim(),
+        accessories: f.accessories.value.trim(),
+        priority: f.priority.value
+      };
+
+      const msg =
+`REPAIR REQUEST
+Customer: ${data.custName}
+Phone: ${data.phone}
+
+Device Type: ${data.deviceType}
+Model: ${data.model}
+Serial/IMEI: ${data.serial || '--'}
+PIN: ${data.pin || '--'}
+
+Issue:
+${data.issue}
+
+Accessories: ${data.accessories || '--'}
+Urgency: ${data.priority}
+
+Customer Signature: ${data.custName}
+Company Signature: SAMDTECH ✅`;
+
+      openWhatsApp(msg);
+      f.reset();
+      return false;
+    }
+  </script>
+</body>
+</html>
